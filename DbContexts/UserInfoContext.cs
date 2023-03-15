@@ -5,8 +5,8 @@ namespace RosteringPractice.DbContexts
 {
     public class UserInfoContext : DbContext
     {
-        public DbSet<Users> Users { get; set; } = null!;
-        public DbSet<Skills> skills { get; set; } = null!;
+        public DbSet<Users> UsersInfo { get; set; } = null!;
+        public DbSet<Skills> UserSkills { get; set; } = null!;
 
         public UserInfoContext(DbContextOptions<UserInfoContext>options) 
             : base(options)
@@ -41,7 +41,7 @@ namespace RosteringPractice.DbContexts
                     Email = "sdrathod4801@gmail.com",
                     Password = "Shubham@123",
                     Location = "Vadodara",
-                    SkillId= 3
+                    SkillId = 3
                 });
             modelBuilder.Entity<Skills>().HasData(
                 new Skills("C#")

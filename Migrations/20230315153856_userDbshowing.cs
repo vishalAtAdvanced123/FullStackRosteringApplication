@@ -4,7 +4,7 @@
 
 namespace RosteringPractice.Migrations
 {
-    public partial class UserInfoContextNew : Migration
+    public partial class userDbshowing : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

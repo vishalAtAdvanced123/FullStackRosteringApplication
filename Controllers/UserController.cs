@@ -33,25 +33,15 @@ namespace CityInfo.API.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(
-            int id, bool includeSkills = false)
+            int id)
         {
             var user = await _userInfoRepository.GetUserAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
-            
-            return Ok(_mapper.Map<UserWithoutSkills>(user));
 
-
-            //var user = UserDataStore.Current.Users
-            //    .FirstOrDefault(c => c.Id == id);
-
-            //if (user == null)
-            //{
-            //    return NotFound();
-            //}
-
+            return Ok(_mapper.Map<UserDto>(user));
 
         }
         [HttpPost]
@@ -69,7 +59,7 @@ namespace CityInfo.API.Controllers
 
         [HttpPut]
         public async Task<ActionResult> UpdateUser(int UserId,
-            UserUpdateDto user, bool includeSkills)
+            UserUpdateDto user)
         {
             var userForUpdate = await _userInfoRepository.GetUserAsync(UserId);
             if (userForUpdate == null)
@@ -93,14 +83,6 @@ namespace CityInfo.API.Controllers
             }
             var userToPatch = _mapper.Map<UserUpdateDto>(user);
 
-
-            //var UserToPatch = new UserUpdateDto()
-            //{
-            //    Name = user.Name,
-            //    Email = user.Email,
-            //    Password = user.Password,
-            //    Location = user.Location,
-            //};
             patchDocument.ApplyTo(userToPatch, ModelState);
 
             if (!ModelState.IsValid)
@@ -127,7 +109,7 @@ namespace CityInfo.API.Controllers
                 return NotFound();
             }
 
-            _userInfoRepository.DeleteUsers(user);
+            await _userInfoRepository.DeleteUsers(user);
             await _userInfoRepository.SaveChangesAsync();
 
             return NoContent();

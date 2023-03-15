@@ -12,8 +12,11 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<UserInfoContext>(DbContextOptions =>
-    DbContextOptions.UseSqlite("Data Source=RosteringPractice.db"));
+var connectionString = builder.Configuration.GetConnectionString("UserInfoDbConnection");
+builder.Services.AddDbContext<UserInfoContext>(options => options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<UserInfoContext>(DbContextOptions =>
+// DbContextOptions.UseSqlServer("name=ConnectionStrings:RosteringPractice.db"));
+//UseSqlite("Data Source=RosteringPractice.db")
 
 builder.Services.AddScoped<IUserInfoRepository, UserInfoRepository>();
 
