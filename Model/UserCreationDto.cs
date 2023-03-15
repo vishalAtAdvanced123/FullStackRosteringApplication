@@ -19,5 +19,6 @@ namespace RosteringPractice.Model
 
         [MaxLength(50)]
         public string? Location { get; set; }
+        public int skillId { get; set; }
     }
 }

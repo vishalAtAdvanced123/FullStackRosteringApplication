@@ -11,8 +11,8 @@ using RosteringPractice.DbContexts;
 namespace RosteringPractice.Migrations
 {
     [DbContext(typeof(UserInfoContext))]
-    [Migration("20230315153304_UserInfoMigration")]
-    partial class UserInfoMigration
+    [Migration("20230315164246_UserInfoContextMigration")]
+    partial class UserInfoContextMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
