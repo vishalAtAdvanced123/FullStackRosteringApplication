@@ -27,14 +27,14 @@ namespace RosteringPractice.Entity
         
         [ForeignKey("SkillId")]
         public Skills? Skills { get; set; }
-        public int SkillId { get; set; } 
-        
-        
-        public ICollection<Skills> skills { get; set; } = new List<Skills>();
+        public int SkillId { get; set; }
 
+
+        //public ICollection<Skills> skills { get; set; } = new List<Skills>();
         public Users(string name)
         {
             Name = name;
         }
+
     }
 }

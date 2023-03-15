@@ -57,15 +57,14 @@ namespace CityInfo.API.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser(UserCreationDto user)
         {
-            var finalUser = _mapper.Map<Users>(user);
-
+            var finalUser = _mapper.Map<Users>(user); 
             await _userInfoRepository.AddUsers(finalUser);
-
             await _userInfoRepository.SaveChangesAsync();
 
-            var createdUserToReturn = _mapper.Map<UserDto>(finalUser);
+            var finalUserToReturn = _mapper.Map<UserDto>(finalUser);
+            return CreatedAtRoute(finalUser, finalUserToReturn);
 
-            return CreatedAtRoute(user, createdUserToReturn);
+
         }
 
         [HttpPut]

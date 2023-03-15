@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace RosteringPractice.Model
+﻿namespace RosteringPractice.Model
 {
     public class UserDto
     {
@@ -15,8 +12,9 @@ namespace RosteringPractice.Model
         public string Password { get; set; }= string.Empty;
 
         public string? Location { get; set; }
+        
 
-        public ICollection<SkillDto> Skills { get; set; } = new List<SkillDto>();
+        //public ICollection<SkillDto> Skills { get; set; } = new List<SkillDto>();
 
     }
 }

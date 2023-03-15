@@ -4,7 +4,7 @@
 
 namespace RosteringPractice.Migrations
 {
-    public partial class UserInfoContext1 : Migration
+    public partial class UserInfoContextMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,8 +14,7 @@ namespace RosteringPractice.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    UsersId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,33 +46,33 @@ namespace RosteringPractice.Migrations
 
             migrationBuilder.InsertData(
                 table: "skills",
-                columns: new[] { "Id", "Name", "UsersId" },
-                values: new object[] { 1, "C#", null });
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "C#" });
 
             migrationBuilder.InsertData(
                 table: "skills",
-                columns: new[] { "Id", "Name", "UsersId" },
-                values: new object[] { 2, "Angular", null });
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 2, "Angular" });
 
             migrationBuilder.InsertData(
                 table: "skills",
-                columns: new[] { "Id", "Name", "UsersId" },
-                values: new object[] { 3, "Web API", null });
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 3, "Web API" });
 
             migrationBuilder.InsertData(
                 table: "skills",
-                columns: new[] { "Id", "Name", "UsersId" },
-                values: new object[] { 4, "Python", null });
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 4, "Python" });
 
             migrationBuilder.InsertData(
                 table: "skills",
-                columns: new[] { "Id", "Name", "UsersId" },
-                values: new object[] { 5, "Java", null });
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 5, "Java" });
 
             migrationBuilder.InsertData(
                 table: "skills",
-                columns: new[] { "Id", "Name", "UsersId" },
-                values: new object[] { 6, "Machine Learning", null });
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 6, "Machine Learning" });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -91,29 +90,13 @@ namespace RosteringPractice.Migrations
                 values: new object[] { 3, "sdrathod4801@gmail.com", "Vadodara", "Shubham Rathod", "Shubham@123", 3 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_skills_UsersId",
-                table: "skills",
-                column: "UsersId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Users_SkillId",
                 table: "Users",
                 column: "SkillId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_skills_Users_UsersId",
-                table: "skills",
-                column: "UsersId",
-                principalTable: "Users",
-                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_skills_Users_UsersId",
-                table: "skills");
-
             migrationBuilder.DropTable(
                 name: "Users");
 

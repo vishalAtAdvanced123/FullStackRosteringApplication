@@ -35,7 +35,7 @@ namespace RosteringPractice.Controllers
             return Ok(_mapper.Map<IEnumerable<SkillDto>>(skillEntity));
             
         }
-        [HttpGet("{SkillId}" , Name ="GetSkills")]
+        [HttpGet("{SkillId}")]
         public async Task<ActionResult<SkillDto>> GetSkill(int SkillId)
         {
             

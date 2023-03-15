@@ -33,11 +33,11 @@ namespace RosteringPractice.Services
                   .Where( p=> p.Id == skillId)
                   .FirstOrDefaultAsync();
         }
-
         public async Task<bool> UserExist(int userId)
         {
-            return await _context.Users.AnyAsync(c => c.Id==userId);
+            return await _context.Users.AnyAsync(c => c.Id == userId);
         }
+        
 
        public async Task AddUsers(Users user)
         {
@@ -61,7 +61,7 @@ namespace RosteringPractice.Services
         }
         public async Task<bool> SaveChangesAsync()
         {
-            return (await _context.SaveChangesAsync() >= 0);
+            return (await _context.SaveChangesAsync() >=0);
         }
 
     }
