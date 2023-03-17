@@ -25,9 +25,10 @@ namespace CityInfo.API.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserWithoutSkills>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserWithoutSkills>>> GetUsers(
+            string? name , string? searchQuery)
         {
-            var userEntities = await _userInfoRepository.GetUsersAsync();
+            var userEntities = await _userInfoRepository.GetUsersAsync(name , searchQuery);
             return Ok(_mapper.Map<IEnumerable<UserDto>>(userEntities));
         }
 

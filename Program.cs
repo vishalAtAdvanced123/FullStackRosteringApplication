@@ -7,18 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers().AddNewtonsoftJson();
-
-//.AddXmlDataContractSerializerFormatters(); //--> For The 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("UserInfoDbConnection");
-builder.Services.AddDbContext<UserInfoContext>(options => options.UseSqlServer(connectionString));
-//builder.Services.AddDbContext<UserInfoContext>(DbContextOptions =>
-// DbContextOptions.UseSqlServer("name=ConnectionStrings:RosteringPractice.db"));
-//UseSqlite("Data Source=RosteringPractice.db")
-
-builder.Services.AddScoped<IUserInfoRepository, UserInfoRepository>();
+builder.Services.AddDbContext<UserInfoContext>(options => options.UseSqlServer(connectionString));builder.Services.AddScoped<IUserInfoRepository, UserInfoRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

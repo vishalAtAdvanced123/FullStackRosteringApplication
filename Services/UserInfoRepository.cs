@@ -64,5 +64,29 @@ namespace RosteringPractice.Services
             return await _context.SaveChangesAsync() >= 0;
         }
 
+        public async Task<IEnumerable<Users>> GetUsersAsync(string name , string searchQuery)
+        {
+            if (string.IsNullOrEmpty(name) &&
+                string.IsNullOrWhiteSpace(searchQuery))
+            {
+                return await GetUsersAsync();
+            }
+            var collection = _context.UsersInfo as IQueryable<Users>;
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                name = name.Trim();
+                collection= collection.Where(c => c.Name == name);
+            }
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                searchQuery = searchQuery.Trim();
+                collection = collection.Where(a => a.Name.Contains(searchQuery) ||
+                (a.Location != null && a.Location.Contains(searchQuery)));
+            }
+
+            return await collection.OrderBy(c => c.Id).ToListAsync();
+
+        }
+
     }
 }

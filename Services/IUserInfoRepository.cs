@@ -5,6 +5,7 @@ namespace RosteringPractice.Services
     public interface IUserInfoRepository
     {
         Task<IEnumerable<Users>> GetUsersAsync();
+        Task<IEnumerable<Users>> GetUsersAsync(string? name , string? searchQuery);
         Task<Users?> GetUserAsync(int UserId);
         Task<IEnumerable<Skills>> GetSkillsAsync(int userId);
         Task<Skills> GetSkillAsync(int SkillId);
