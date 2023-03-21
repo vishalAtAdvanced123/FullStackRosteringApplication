@@ -1,6 +1,4 @@
-﻿using RosteringPractice.Model;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RosteringPractice.Entity
@@ -9,20 +7,11 @@ namespace RosteringPractice.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
         public int Id { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-        [Required]
-        [PasswordPropertyText]
-        public string Password { get; set; }
         
-        [Required]
-        [MaxLength(50)]
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
         public string? Location { get; set; }
 
         [ForeignKey("SkillId")]

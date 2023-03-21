@@ -64,27 +64,30 @@ namespace RosteringPractice.Services
             return await _context.SaveChangesAsync() >= 0;
         }
 
-        public async Task<IEnumerable<Users>> GetUsersAsync(string name , string searchQuery)
+        public async Task<IEnumerable<Users>> GetUsersAsync(int pageSize , int pageNumber)
         {
-            if (string.IsNullOrEmpty(name) &&
-                string.IsNullOrWhiteSpace(searchQuery))
-            {
-                return await GetUsersAsync();
-            }
+            //if (string.IsNullOrEmpty(name) &&
+            //    string.IsNullOrWhiteSpace(searchQuery))
+            //{
+            //    return await GetUsersAsync(); string name , string searchQuery,
+            //}
             var collection = _context.UsersInfo as IQueryable<Users>;
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                name = name.Trim();
-                collection= collection.Where(c => c.Name == name);
-            }
-            if (!string.IsNullOrWhiteSpace(searchQuery))
-            {
-                searchQuery = searchQuery.Trim();
-                collection = collection.Where(a => a.Name.Contains(searchQuery) ||
-                (a.Location != null && a.Location.Contains(searchQuery)));
-            }
+            //if (!string.IsNullOrWhiteSpace(name))
+            //{
+            //    name = name.Trim();
+            //    collection= collection.Where(c => c.Name == name);
+            //}
+            //if (!string.IsNullOrWhiteSpace(searchQuery))
+            //{
+            //    searchQuery = searchQuery.Trim();
+            //    collection = collection.Where(a => a.Name.Contains(searchQuery) ||
+            //    (a.Location != null && a.Location.Contains(searchQuery)));
+            //}
 
-            return await collection.OrderBy(c => c.Id).ToListAsync();
+            return await collection.OrderBy(c => c.Id)
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .ToListAsync();
 
         }
 

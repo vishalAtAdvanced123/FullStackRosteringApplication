@@ -7,9 +7,7 @@ namespace RosteringPractice.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
         public int Id { get; set; }
-        [Required]
         [MaxLength(50)]
         public string Name { get; set; }
         public Skills(string name)

@@ -7,6 +7,7 @@ using RosteringPractice.Model;
 using RosteringPractice.Services;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CityInfo.API.Controllers
 {
@@ -16,6 +17,8 @@ namespace CityInfo.API.Controllers
     {
         private readonly IUserInfoRepository _userInfoRepository;
         private readonly IMapper _mapper;
+        const int MaxPageNumber = 20;
+        
 
         public UserController(IUserInfoRepository userInfoRepository,
             IMapper mapper)
@@ -25,10 +28,13 @@ namespace CityInfo.API.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserWithoutSkills>>> GetUsers(
-            string? name , string? searchQuery)
+        public async Task<ActionResult<IEnumerable<UserWithoutSkills>>> GetUsers(int pageSize, int pageNumber)
         {
-            var userEntities = await _userInfoRepository.GetUsersAsync(name , searchQuery);
+            if (pageSize > MaxPageNumber)
+            {
+                pageSize = MaxPageNumber;
+            }
+            var userEntities = await _userInfoRepository.GetUsersAsync(pageSize,pageNumber);
             return Ok(_mapper.Map<IEnumerable<UserDto>>(userEntities));
         }
 
@@ -39,7 +45,7 @@ namespace CityInfo.API.Controllers
             var user = await _userInfoRepository.GetUserAsync(id);
             if (user == null)
             {
-                return NotFound();
+                return NotFound("Please Enter the Valid Value !");
             }
 
             return Ok(_mapper.Map<UserDto>(user));
@@ -59,15 +65,16 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateUser(int UserId,
-            UserUpdateDto user)
+        public async Task<ActionResult> UpdateUser(int UserId, UserUpdateDto user)
         {
             var userForUpdate = await _userInfoRepository.GetUserAsync(UserId);
             if (userForUpdate == null)
             {
-                return NotFound();
+                return NotFound("please Enter the valid value");
             }
-            _mapper.Map(user, userForUpdate);
+            
+
+            _mapper.Map(user ,userForUpdate);
 
             await _userInfoRepository.SaveChangesAsync();
             return NoContent();
@@ -80,7 +87,7 @@ namespace CityInfo.API.Controllers
             var user = await _userInfoRepository.GetUserAsync(UserId);
             if (user == null)
             {
-                return NotFound();
+                return NotFound("Please Enter the Valid Value!");
             }
             var userToPatch = _mapper.Map<UserUpdateDto>(user);
 
@@ -107,7 +114,7 @@ namespace CityInfo.API.Controllers
             var user = await _userInfoRepository.GetUserAsync(UserId);
             if (user == null)
             {
-                return NotFound();
+                return NotFound("Please Enter the Valid Value!");
             }
 
             await _userInfoRepository.DeleteUsers(user);
