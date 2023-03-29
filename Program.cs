@@ -15,6 +15,14 @@ builder.Services.AddDbContext<UserInfoContext>(options => options.UseSqlServer(c
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy(name: "AllowOrigin", builder =>
+    {
+        builder.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +35,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseCors("AllowOrigin");
 
 app.UseAuthorization();
 

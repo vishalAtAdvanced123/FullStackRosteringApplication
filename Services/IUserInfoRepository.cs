@@ -8,7 +8,7 @@ namespace RosteringPractice.Services
         Task<IEnumerable<Users?>> GetUsersAsync(
             int pageNumber , int pageSize);
         Task<Users?> GetUserAsync(int UserId);
-        Task<IEnumerable<Skills>> GetSkillsAsync(int userId);
+        Task<IEnumerable<Skills>> GetSkillsAsync();
         Task<Skills?> GetSkillAsync(int SkillId);
         Task <bool> UserExist(int userId);
         Task AddUsers (Users user);

@@ -20,11 +20,11 @@ namespace RosteringPractice.Services
         public async Task<Users?> GetUserAsync(int userId )
         {
             
-            return await _context.UsersInfo.Where(c => c.Id ==userId).FirstOrDefaultAsync();
+            return await _context.UsersInfo.Where(c => c.Id == userId).FirstOrDefaultAsync();
         }
-        public async Task<IEnumerable<Skills>> GetSkillsAsync(int SkillId)
+        public async Task<IEnumerable<Skills>> GetSkillsAsync()
         {
-            return await _context.UserSkills.OrderBy(c => c.Id == SkillId).ToListAsync();
+            return await _context.UserSkills.OrderBy(c => c.Id).ToListAsync();
         }
 
         public async Task<Skills?> GetSkillAsync(int skillId)
@@ -66,23 +66,12 @@ namespace RosteringPractice.Services
 
         public async Task<IEnumerable<Users>> GetUsersAsync(int pageSize , int pageNumber)
         {
-            //if (string.IsNullOrEmpty(name) &&
-            //    string.IsNullOrWhiteSpace(searchQuery))
-            //{
-            //    return await GetUsersAsync(); string name , string searchQuery,
-            //}
+            if (pageNumber == 0 && pageSize == 0)
+            {
+                return await GetUsersAsync();
+            }
             var collection = _context.UsersInfo as IQueryable<Users>;
-            //if (!string.IsNullOrWhiteSpace(name))
-            //{
-            //    name = name.Trim();
-            //    collection= collection.Where(c => c.Name == name);
-            //}
-            //if (!string.IsNullOrWhiteSpace(searchQuery))
-            //{
-            //    searchQuery = searchQuery.Trim();
-            //    collection = collection.Where(a => a.Name.Contains(searchQuery) ||
-            //    (a.Location != null && a.Location.Contains(searchQuery)));
-            //}
+            
 
             return await collection.OrderBy(c => c.Id)
                 .Skip(pageSize * (pageNumber - 1))

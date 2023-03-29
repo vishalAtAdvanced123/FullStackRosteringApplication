@@ -83,17 +83,22 @@ namespace RosteringPractice.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Location")
+                    b.Property<string>("Gender")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -111,27 +116,33 @@ namespace RosteringPractice.Migrations
                         {
                             Id = 1,
                             Email = "Vishalanilrathod@gmail.com",
+                            Gender = "Male",
                             Location = "Vadodara",
                             Name = "Vishal Rathod",
                             Password = "Vishal@123",
+                            Position = "Developer Trainee",
                             SkillId = 1
                         },
                         new
                         {
                             Id = 2,
                             Email = "rahulparik12@gmail.com",
+                            Gender = "Male",
                             Location = "Vadodara",
                             Name = "Rahul Parik",
-                            Password = "Rahul@123",
+                            Password = "Vishal@123",
+                            Position = "Seniour Developer Trainee",
                             SkillId = 2
                         },
                         new
                         {
                             Id = 3,
                             Email = "sdrathod4801@gmail.com",
-                            Location = "Vadodara",
+                            Gender = "Male",
+                            Location = "Banglore",
                             Name = "Shubham Rathod",
-                            Password = "Shubham@123",
+                            Password = "Vishal@123",
+                            Position = "Jr. Software Trainee",
                             SkillId = 3
                         });
                 });

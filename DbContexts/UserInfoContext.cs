@@ -20,8 +20,10 @@ namespace RosteringPractice.DbContexts
                 {
                     Id = 1,
                     Email = "Vishalanilrathod@gmail.com",
-                    Password = "Vishal@123",
                     Location = "Vadodara",
+                    Position = "Developer Trainee",
+                    Gender = "Male",
+                    Password = "Vishal@123",
                     SkillId = 1
 
 
@@ -30,17 +32,21 @@ namespace RosteringPractice.DbContexts
                 {
                     Id = 2,
                     Email = "rahulparik12@gmail.com",
-                    Password = "Rahul@123",
                     Location = "Vadodara",
-                    SkillId= 2
+                    Position = "Seniour Developer Trainee",
+                    Gender = "Male",
+                    Password = "Vishal@123",
+                    SkillId = 2
                     
                 },
                 new Users("Shubham Rathod")
                 {
                     Id = 3,
                     Email = "sdrathod4801@gmail.com",
-                    Password = "Shubham@123",
-                    Location = "Vadodara",
+                    Location = "Banglore",
+                    Position = "Jr. Software Trainee",
+                    Gender = "Male",
+                    Password = "Vishal@123",
                     SkillId = 3
                 });
             modelBuilder.Entity<Skills>().HasData(

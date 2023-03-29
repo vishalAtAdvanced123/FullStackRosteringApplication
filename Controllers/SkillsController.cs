@@ -23,15 +23,9 @@ namespace RosteringPractice.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SkillDto>>> GetSkills( int UserId)
+        public async Task<ActionResult<IEnumerable<SkillDto>>> GetSkills()
         {
-            if (!await _userInfoRepository.UserExist(UserId))
-            {
-                return NotFound();
-            }
-
-
-            var skillEntity = await _userInfoRepository.GetSkillsAsync(UserId);
+            var skillEntity = await _userInfoRepository.GetSkillsAsync();
             return Ok(_mapper.Map<IEnumerable<SkillDto>>(skillEntity));
             
         }

@@ -8,17 +8,20 @@ using RosteringPractice.Services;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Cors;
 
 namespace CityInfo.API.Controllers
 {
     [ApiController]
     [Route("api/users")]
+    [EnableCors("AllowOrigin")]
+
     public class UserController : ControllerBase
     {
         private readonly IUserInfoRepository _userInfoRepository;
         private readonly IMapper _mapper;
         const int MaxPageNumber = 20;
-        
+
 
         public UserController(IUserInfoRepository userInfoRepository,
             IMapper mapper)
@@ -28,14 +31,14 @@ namespace CityInfo.API.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserWithoutSkills>>> GetUsers(int pageSize, int pageNumber)
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers(int pageSize, int pageNumber)
         {
             if (pageSize > MaxPageNumber)
             {
                 pageSize = MaxPageNumber;
             }
-            var userEntities = await _userInfoRepository.GetUsersAsync(pageSize,pageNumber);
-            return Ok(_mapper.Map<IEnumerable<UserDto>>(userEntities));
+            var userEntities = await _userInfoRepository.GetUsersAsync(pageSize, pageNumber);
+            return Ok(_mapper.Map<IEnumerable<UserWithoutSkills>>(userEntities));
         }
 
         [HttpGet("{id}")]
@@ -54,7 +57,7 @@ namespace CityInfo.API.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDto>> CreateUser(UserCreationDto user)
         {
-            var finalUser = _mapper.Map<Users>(user); 
+            var finalUser = _mapper.Map<Users>(user);
             await _userInfoRepository.AddUsers(finalUser);
             await _userInfoRepository.SaveChangesAsync();
 
@@ -64,15 +67,18 @@ namespace CityInfo.API.Controllers
 
         }
 
-        [HttpPut]
-        public async Task<ActionResult> UpdateUser(int UserId, UserUpdateDto user)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateUser(int id, UserUpdateDto user)
         {
-            var userForUpdate = await _userInfoRepository.GetUserAsync(UserId);
+            var userForUpdate = await _userInfoRepository.GetUserAsync(id);
+            
             if (userForUpdate == null)
             {
                 return NotFound("please Enter the valid value");
             }
+
             
+
 
             _mapper.Map(user ,userForUpdate);
 

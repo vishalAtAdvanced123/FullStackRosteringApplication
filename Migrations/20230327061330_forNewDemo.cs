@@ -4,7 +4,7 @@
 
 namespace RosteringPractice.Migrations
 {
-    public partial class UserInfoContextMigration : Migration
+    public partial class forNewDemo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,10 +27,12 @@ namespace RosteringPractice.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     SkillId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -59,18 +61,18 @@ namespace RosteringPractice.Migrations
 
             migrationBuilder.InsertData(
                 table: "UsersInfo",
-                columns: new[] { "Id", "Email", "Location", "Name", "Password", "SkillId" },
-                values: new object[] { 1, "Vishalanilrathod@gmail.com", "Vadodara", "Vishal Rathod", "Vishal@123", 1 });
+                columns: new[] { "Id", "Email", "Gender", "Location", "Name", "Password", "Position", "SkillId" },
+                values: new object[] { 1, "Vishalanilrathod@gmail.com", "Male", "Vadodara", "Vishal Rathod", "Vishal@123", "Developer Trainee", 1 });
 
             migrationBuilder.InsertData(
                 table: "UsersInfo",
-                columns: new[] { "Id", "Email", "Location", "Name", "Password", "SkillId" },
-                values: new object[] { 2, "rahulparik12@gmail.com", "Vadodara", "Rahul Parik", "Rahul@123", 2 });
+                columns: new[] { "Id", "Email", "Gender", "Location", "Name", "Password", "Position", "SkillId" },
+                values: new object[] { 2, "rahulparik12@gmail.com", "Male", "Vadodara", "Rahul Parik", "Vishal@123", "Seniour Developer Trainee", 2 });
 
             migrationBuilder.InsertData(
                 table: "UsersInfo",
-                columns: new[] { "Id", "Email", "Location", "Name", "Password", "SkillId" },
-                values: new object[] { 3, "sdrathod4801@gmail.com", "Vadodara", "Shubham Rathod", "Shubham@123", 3 });
+                columns: new[] { "Id", "Email", "Gender", "Location", "Name", "Password", "Position", "SkillId" },
+                values: new object[] { 3, "sdrathod4801@gmail.com", "Male", "Banglore", "Shubham Rathod", "Vishal@123", "Jr. Software Trainee", 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UsersInfo_SkillId",
