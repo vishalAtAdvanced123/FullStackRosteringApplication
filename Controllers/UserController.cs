@@ -39,6 +39,7 @@ namespace CityInfo.API.Controllers
             }
             var userEntities = await _userInfoRepository.GetUsersAsync(pageSize, pageNumber);
             return Ok(_mapper.Map<IEnumerable<UserWithoutSkills>>(userEntities));
+            //return Ok(userEntities);
         }
 
         [HttpGet("{id}")]
@@ -51,17 +52,17 @@ namespace CityInfo.API.Controllers
                 return NotFound("Please Enter the Valid Value !");
             }
 
-            return Ok(_mapper.Map<UserDto>(user));
+            return Ok(_mapper.Map<UserWithoutSkills>(user));
 
         }
         [HttpPost]
-        public async Task<ActionResult<UserDto>> CreateUser(UserCreationDto user)
+        public async Task<ActionResult<UserWithoutSkills>> CreateUser(UserCreationDto user)
         {
             var finalUser = _mapper.Map<Users>(user);
             await _userInfoRepository.AddUsers(finalUser);
             await _userInfoRepository.SaveChangesAsync();
 
-            var finalUserToReturn = _mapper.Map<UserDto>(finalUser);
+            var finalUserToReturn = _mapper.Map<UserWithoutSkills>(finalUser);
             return CreatedAtRoute(finalUser, finalUserToReturn);
 
 

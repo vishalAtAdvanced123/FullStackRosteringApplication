@@ -24,7 +24,7 @@ namespace RosteringPractice.DbContexts
                     Position = "Developer Trainee",
                     Gender = "Male",
                     Password = "Vishal@123",
-                    SkillId = 1
+                    
 
 
                 },
@@ -36,7 +36,7 @@ namespace RosteringPractice.DbContexts
                     Position = "Seniour Developer Trainee",
                     Gender = "Male",
                     Password = "Vishal@123",
-                    SkillId = 2
+                    
                     
                 },
                 new Users("Shubham Rathod")
@@ -47,37 +47,43 @@ namespace RosteringPractice.DbContexts
                     Position = "Jr. Software Trainee",
                     Gender = "Male",
                     Password = "Vishal@123",
-                    SkillId = 3
+                    
                 });
             modelBuilder.Entity<Skills>().HasData(
                 new Skills("C#")
                 {
                     Id = 1,
+                    UserId= 1
                     
                     
                 },
                 new Skills("Angular")
                 {
                     Id = 2,
+                    UserId= 1
                     
                     
                 },
                 new Skills("Web API")
                 {
-                    Id = 3
+                    Id = 3,
+                    UserId= 2
                     
                 }, 
                 new Skills("Python")
                 {
-                    Id = 4
+                    Id = 4,
+                    UserId= 2
                 },
                 new Skills("Java")
                 {
-                    Id = 5
+                    Id = 5,
+                    UserId= 3
                 },
                 new Skills("Machine Learning")
                 {
-                    Id = 6
+                    Id = 6,
+                    UserId= 3
                 }
                 
 

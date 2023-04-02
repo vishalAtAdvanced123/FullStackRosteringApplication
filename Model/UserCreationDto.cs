@@ -16,6 +16,6 @@ namespace RosteringPractice.Model
         public string? Gender { get; set; }
         public string Password { get; set; } = string.Empty;
         
-        public int skillId { get; set; }
+        //public int skillId { get; set; }
     }
 }

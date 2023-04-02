@@ -33,6 +33,11 @@ namespace RosteringPractice.Services
                   .Where( p=> p.Id == skillId)
                   .FirstOrDefaultAsync();
         }
+
+        public async Task<IEnumerable<Skills>> GetSkillsForUserAsync(int userId)
+        {
+            return await _context.UserSkills.Where(c => c.UserId == userId).ToListAsync();
+        }
         public async Task<bool> UserExist(int userId)
         {
             return await _context.UsersInfo.AnyAsync(c => c.Id == userId);
@@ -47,10 +52,14 @@ namespace RosteringPractice.Services
         {
             _context.UsersInfo.Remove(user);
         }
-        public async Task AddSkills(Skills skills)
+        public async Task AddSkills(int userId, Skills skill)
         {
-
-            _context.UserSkills.Add(skills);
+            var user = await GetUserAsync(userId);
+            if (user != null)
+            {
+                user.Skill.Add(skill);
+            }
+          // _context.UserSkills.Add(skill);
            
             
         }

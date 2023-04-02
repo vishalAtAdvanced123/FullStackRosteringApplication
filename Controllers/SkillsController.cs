@@ -29,34 +29,56 @@ namespace RosteringPractice.Controllers
             return Ok(_mapper.Map<IEnumerable<SkillDto>>(skillEntity));
             
         }
-        [HttpGet("{SkillId}")]
-        public async Task<ActionResult<SkillDto>> GetSkill(int SkillId)
-        {
-            
 
-            var skill = await _userInfoRepository.GetSkillAsync(SkillId);
-            if (skill == null)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<SkillDto>>> GetForUserSkills(int id)
+        {
+            if (!await _userInfoRepository.UserExist(id))
             {
                 return NotFound();
             }
-            return Ok(_mapper.Map<SkillDto>(skill));
-            
+
+
+            var skillEntity = await _userInfoRepository.GetSkillsForUserAsync(id);
+            return Ok(_mapper.Map<IEnumerable<SkillDto>>(skillEntity));
+
         }
-        [HttpPost]
-        public async Task<ActionResult<SkillDto>> CreateSkill(
+
+
+        //[HttpGet("{SkillId}")]
+        //public async Task<ActionResult<SkillDto>> GetSkill(int SkillId)
+        //{
+            
+
+        //    var skill = await _userInfoRepository.GetSkillAsync(SkillId);
+        //    if (skill == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(_mapper.Map<SkillDto>(skill));
+            
+        //}
+        [HttpPost("{id}")]
+        public async Task<ActionResult<SkillDto>> CreateSkill(int id,
              SkillCreationDto skill)
         {
+            if(!await _userInfoRepository.UserExist(id))
+            {
+                return NotFound();
+            }
             
             var finalSkill = _mapper.Map<Skills>(skill);
 
 
-            await _userInfoRepository.AddSkills(finalSkill);
+            await _userInfoRepository.AddSkills(id ,finalSkill);
             await _userInfoRepository.SaveChangesAsync();
 
             var finalSkillReturn = _mapper.Map<SkillDto>(finalSkill);
 
             return CreatedAtRoute(finalSkill, finalSkillReturn);
         }
+
+
         [HttpPut]
         public async Task<ActionResult> SkillUpdate(SkillUpdateDto skill, int SkillId)
         {

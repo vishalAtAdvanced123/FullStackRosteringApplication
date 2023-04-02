@@ -10,6 +10,10 @@ namespace RosteringPractice.Entity
         public int Id { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }
+
+        [ForeignKey("UserId")]
+        public Users? Users { get; set; }
+        public int UserId { get; set; }
         public Skills(string name)
         {
             Name = name;

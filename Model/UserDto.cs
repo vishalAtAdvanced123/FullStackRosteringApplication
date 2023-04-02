@@ -13,12 +13,17 @@ namespace RosteringPractice.Model
         public string? Location { get; set; }
         public string? Position { get; set; } 
         public string? Gender { get; set; }
+        //public int SkillId { get; set; }
 
         public string Password { get; set; }= string.Empty;
+
+        public ICollection<SkillDto> Skill { get; set; } =
+            new List<SkillDto>();
+             
        
 
 
-        public int SkillId { get; set; }
+        
 
 
         

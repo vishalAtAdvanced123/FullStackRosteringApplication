@@ -34,7 +34,12 @@ namespace RosteringPractice.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserSkills");
 
@@ -42,32 +47,38 @@ namespace RosteringPractice.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "C#"
+                            Name = "C#",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Angular"
+                            Name = "Angular",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Web API"
+                            Name = "Web API",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Python"
+                            Name = "Python",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Java"
+                            Name = "Java",
+                            UserId = 3
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Machine Learning"
+                            Name = "Machine Learning",
+                            UserId = 3
                         });
                 });
 
@@ -102,12 +113,7 @@ namespace RosteringPractice.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SkillId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SkillId");
 
                     b.ToTable("UsersInfo");
 
@@ -120,8 +126,7 @@ namespace RosteringPractice.Migrations
                             Location = "Vadodara",
                             Name = "Vishal Rathod",
                             Password = "Vishal@123",
-                            Position = "Developer Trainee",
-                            SkillId = 1
+                            Position = "Developer Trainee"
                         },
                         new
                         {
@@ -131,8 +136,7 @@ namespace RosteringPractice.Migrations
                             Location = "Vadodara",
                             Name = "Rahul Parik",
                             Password = "Vishal@123",
-                            Position = "Seniour Developer Trainee",
-                            SkillId = 2
+                            Position = "Seniour Developer Trainee"
                         },
                         new
                         {
@@ -142,20 +146,24 @@ namespace RosteringPractice.Migrations
                             Location = "Banglore",
                             Name = "Shubham Rathod",
                             Password = "Vishal@123",
-                            Position = "Jr. Software Trainee",
-                            SkillId = 3
+                            Position = "Jr. Software Trainee"
                         });
+                });
+
+            modelBuilder.Entity("RosteringPractice.Entity.Skills", b =>
+                {
+                    b.HasOne("RosteringPractice.Entity.Users", "Users")
+                        .WithMany("Skill")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("RosteringPractice.Entity.Users", b =>
                 {
-                    b.HasOne("RosteringPractice.Entity.Skills", "Skills")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Skills");
+                    b.Navigation("Skill");
                 });
 #pragma warning restore 612, 618
         }
