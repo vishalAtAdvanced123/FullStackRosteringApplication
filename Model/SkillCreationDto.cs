@@ -2,7 +2,8 @@
 {
     public class SkillCreationDto
     {
-        public string Name { get; set; } = string.Empty;
+        
+        public int SkillId { get; set; }
         
     }
 }

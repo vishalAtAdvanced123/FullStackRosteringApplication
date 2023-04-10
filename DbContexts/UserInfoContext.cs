@@ -6,7 +6,12 @@ namespace RosteringPractice.DbContexts
     public class UserInfoContext : DbContext
     {
         public DbSet<Users> UsersInfo { get; set; } = null!;
-        public DbSet<Skills> UserSkills { get; set; } = null!;
+        public DbSet<UserSkills> UserSkills { get; set; } = null!;
+        public DbSet<Location> LocationList { get; set; } = null!;
+        public DbSet<Gender> GenderList { get; set; } = null!;
+        public DbSet<Designation> DesignationList { get; set; } = null!;
+
+        public DbSet<Skill> SkillList { get; set; } = null!;
 
         public UserInfoContext(DbContextOptions<UserInfoContext>options) 
             : base(options)
@@ -15,79 +20,162 @@ namespace RosteringPractice.DbContexts
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Users>().HasIndex(u => u.UserName).IsUnique();
+
             modelBuilder.Entity<Users>().HasData(
-                new Users("Vishal Rathod")
+                new Users("Vishal","Rathod")
                 {
                     Id = 1,
+                    UserName = "vishal.rathod123",
+                    LocationId = 1,
+                    DesignationId = 1,
+                    GenderId = 1,
                     Email = "Vishalanilrathod@gmail.com",
-                    Location = "Vadodara",
-                    Position = "Developer Trainee",
-                    Gender = "Male",
-                    Password = "Vishal@123",
+                    Password = "Vishal@123"
                     
 
 
                 },
-                new Users("Rahul Parik")
+                new Users("Rahul","Parikh")
                 {
                     Id = 2,
-                    Email = "rahulparik12@gmail.com",
-                    Location = "Vadodara",
-                    Position = "Seniour Developer Trainee",
-                    Gender = "Male",
-                    Password = "Vishal@123",
-                    
-                    
+                    UserName = "rahul.rparikh123",
+                    LocationId = 2,
+                    DesignationId = 2,
+                    GenderId = 1,
+                    Email = "rahulparikh12@gmail.com",
+                    Password = "Rahul@123",
+
+
                 },
-                new Users("Shubham Rathod")
+                new Users("Kiran","Patil")
                 {
                     Id = 3,
-                    Email = "sdrathod4801@gmail.com",
-                    Location = "Banglore",
-                    Position = "Jr. Software Trainee",
-                    Gender = "Male",
-                    Password = "Vishal@123",
-                    
+                    UserName = "Kiran.patil321",
+                    LocationId = 3,
+                    DesignationId = 2,
+                    GenderId = 1,
+                    Email = "kirangaudapatil@gmail.com",
+                    Password = "Kiran@123",
+
                 });
-            modelBuilder.Entity<Skills>().HasData(
-                new Skills("C#")
+            modelBuilder.Entity<UserSkills>().HasData(
+                new UserSkills()
                 {
                     Id = 1,
-                    UserId= 1
-                    
-                    
+                    SkillId = 1,
+                    UserId = 1
+
+
                 },
-                new Skills("Angular")
+                new UserSkills()
                 {
                     Id = 2,
-                    UserId= 1
-                    
-                    
+                    SkillId = 2,
+                    UserId = 1
+
+
                 },
-                new Skills("Web API")
+                new UserSkills()
                 {
                     Id = 3,
-                    UserId= 2
-                    
-                }, 
-                new Skills("Python")
+                    SkillId = 2,
+                    UserId = 1
+
+                },
+
+                new UserSkills()
                 {
                     Id = 4,
-                    UserId= 2
+                    SkillId = 3,
+                    UserId = 2
                 },
-                new Skills("Java")
+                new UserSkills()
                 {
                     Id = 5,
-                    UserId= 3
+                    SkillId = 4,
+                    UserId = 3
                 },
-                new Skills("Machine Learning")
+                new UserSkills()
                 {
                     Id = 6,
-                    UserId= 3
+                    SkillId = 6,
+                    UserId = 3
                 }
-                
+
 
                 );
+            modelBuilder.Entity<Location>().HasData(
+                new Location("Banglore")
+                {
+                    Id= 1,
+                },
+                new Location("Vadodara")
+                {
+                    Id = 2,
+                },
+                 new Location("Ahamadabad")
+                 {
+                     Id = 3,
+                 }
+                 );
+
+            modelBuilder.Entity<Gender>().HasData(
+                new Gender("Male")
+                {
+                    Id = 1
+                },
+                new Gender("Female")
+                {
+                    Id = 2
+                }
+                );
+            modelBuilder.Entity<Designation>().HasData(
+               new Designation("Trainee")
+               {
+                   Id = 1
+               },
+               new Designation("Jr. Software Developer")
+               {
+                   Id = 2
+               },
+               new Designation("Senior Software Developer")
+               {
+                   Id = 3
+               }
+               );
+            modelBuilder.Entity<Skill>().HasData(
+                new Skill("C#")
+                {
+                    Id= 1
+                },
+                 new Skill("Angular")
+                 {
+                     Id = 2
+                 },
+                 new Skill("Java")
+                 {
+                     Id = 3
+                 },
+                 new Skill("Python")
+                 {
+                     Id = 4
+                 },
+                 new Skill("Machine Learning")
+                 {
+                     Id = 5
+                 },
+                 new Skill("Web API")
+                 {
+                     Id = 6
+                 },
+                 new Skill(".NET")
+                 {
+                     Id = 7
+                 }
+                );
+           
+
 
             base.OnModelCreating(modelBuilder);
         }

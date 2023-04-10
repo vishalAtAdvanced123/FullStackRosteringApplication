@@ -1,42 +1,43 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RosteringPractice.Entity;
+using RosteringPractice.Model;
 using RosteringPractice.Services;
 
 namespace RosteringPractice.Controllers
 {
-    [Route("api/users/Skills")]
+    [Route("api/users/locations")]
     [ApiController]
-    public class SkillsController : ControllerBase
+    public class LocationController : ControllerBase
     {
         private readonly IUserInfoRepository _userInfoRepository;
         private readonly IMapper _mapper;
 
-        public SkillsController(IUserInfoRepository userInfoRepository, IMapper mapper)
+        public LocationController(IUserInfoRepository userInfoRepository, IMapper mapper)
         {
             _userInfoRepository = userInfoRepository
                 ?? throw new ArgumentNullException(nameof(userInfoRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Skill>>> GetAllSkills()
+        public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {
-            var skills = await _userInfoRepository.GetAllSkillsAsync();
-            return Ok(_mapper.Map<IEnumerable<Skill>>(skills));
+            var locationEntity = await _userInfoRepository.GetLocationsAsync();
+            return Ok(_mapper.Map<IEnumerable<Location>>(locationEntity));
 
         }
-
         [HttpGet("{id}")]
-        public async Task<ActionResult<Skill>> GetSkill(int id)
+        public async Task<ActionResult<Location>> GetLocation(int id)
         {
-            var skill = await _userInfoRepository.GetmasterSkillAsync(id);
-            if (skill == null)
+            var location = await _userInfoRepository.GetLocationAsync(id);
+            if (location == null)
             {
                 return NotFound();
             }
-            return Ok(skill);
+            return Ok(location);
         }
+
+
 
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RosteringPractice.DbContexts;
 
@@ -10,9 +11,10 @@ using RosteringPractice.DbContexts;
 namespace RosteringPractice.Migrations
 {
     [DbContext(typeof(UserInfoContext))]
-    partial class UserInfoContextModelSnapshot : ModelSnapshot
+    [Migration("20230410042934_newupdate")]
+    partial class newupdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

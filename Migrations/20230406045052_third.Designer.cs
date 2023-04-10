@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RosteringPractice.DbContexts;
 
@@ -10,9 +11,10 @@ using RosteringPractice.DbContexts;
 namespace RosteringPractice.Migrations
 {
     [DbContext(typeof(UserInfoContext))]
-    partial class UserInfoContextModelSnapshot : ModelSnapshot
+    [Migration("20230406045052_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +53,7 @@ namespace RosteringPractice.Migrations
                         new
                         {
                             Id = 3,
-                            DesignationName = "Senior Software Developer"
+                            DesignationName = "Seniour Software Developer"
                         });
                 });
 
@@ -207,7 +209,7 @@ namespace RosteringPractice.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -216,9 +218,6 @@ namespace RosteringPractice.Migrations
                     b.HasIndex("GenderId");
 
                     b.HasIndex("LocationId");
-
-                    b.HasIndex("UserName")
-                        .IsUnique();
 
                     b.ToTable("UsersInfo");
 

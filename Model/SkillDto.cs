@@ -6,12 +6,14 @@ namespace RosteringPractice.Model
     {
         
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int SkillId { get; set; }
+
+        public int UserId { get; set; }
         
 
-        public SkillDto(string name)
-        {
-            Name = name;
-        }
+        //public SkillDto(string name)
+        //{
+        //    Name = name;
+        //}
     }  
 }

@@ -6,9 +6,9 @@ namespace RosteringPractice.Profiles
     {
         public SkillsProfile() 
         {
-            CreateMap<Entity.Skills, Model.SkillDto>();
-            CreateMap<Model.SkillCreationDto, Entity.Skills>();
-            CreateMap<Model.SkillUpdateDto, Entity.Skills>();
+            CreateMap<Entity.UserSkills, Model.SkillDto>();
+            CreateMap<Model.SkillCreationDto, Entity.UserSkills>();
+            CreateMap<Model.SkillUpdateDto, Entity.UserSkills>();
             
         }
     }

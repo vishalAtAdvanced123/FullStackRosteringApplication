@@ -38,7 +38,7 @@ namespace CityInfo.API.Controllers
                 pageSize = MaxPageNumber;
             }
             var userEntities = await _userInfoRepository.GetUsersAsync(pageSize, pageNumber);
-            return Ok(_mapper.Map<IEnumerable<UserWithoutSkills>>(userEntities));
+            return Ok(_mapper.Map<IEnumerable<UserDto>>(userEntities));
             //return Ok(userEntities);
         }
 
@@ -69,7 +69,7 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateUser(int id, UserUpdateDto user)
+        public async Task<ActionResult> UpdateUser(int id, UserCreationDto user)
         {
             var userForUpdate = await _userInfoRepository.GetUserAsync(id);
             

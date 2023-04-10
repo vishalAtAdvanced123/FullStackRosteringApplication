@@ -6,37 +6,36 @@ using RosteringPractice.Services;
 
 namespace RosteringPractice.Controllers
 {
-    [Route("api/users/Skills")]
+    [Route("api/user/designation")]
     [ApiController]
-    public class SkillsController : ControllerBase
+    public class DesignationController : ControllerBase
     {
         private readonly IUserInfoRepository _userInfoRepository;
         private readonly IMapper _mapper;
 
-        public SkillsController(IUserInfoRepository userInfoRepository, IMapper mapper)
+        public DesignationController(IUserInfoRepository userInfoRepository, IMapper mapper)
         {
             _userInfoRepository = userInfoRepository
                 ?? throw new ArgumentNullException(nameof(userInfoRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Skill>>> GetAllSkills()
+        public async Task<ActionResult<IEnumerable<Designation>>> GetDesignations()
         {
-            var skills = await _userInfoRepository.GetAllSkillsAsync();
-            return Ok(_mapper.Map<IEnumerable<Skill>>(skills));
+            var genderEntity = await _userInfoRepository.GetDesignationsAsync();
+            return Ok(_mapper.Map<IEnumerable<Designation>>(genderEntity));
 
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Skill>> GetSkill(int id)
+        public async Task<ActionResult<Designation>> GetGender(int id)
         {
-            var skill = await _userInfoRepository.GetmasterSkillAsync(id);
-            if (skill == null)
+            var gender = await _userInfoRepository.GetDesignationAsync(id);
+            if (gender == null)
             {
                 return NotFound();
             }
-            return Ok(skill);
+            return Ok(gender);
         }
-
     }
 }
