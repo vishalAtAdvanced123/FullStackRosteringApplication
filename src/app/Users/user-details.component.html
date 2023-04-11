@@ -1,0 +1,69 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <!-- User Details  -->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets/default-avatar.jpg">
+            </div>
+            <div class="col-md-6">
+                <div class="table-responsive my-3">
+                    <table class='table'>
+                        <thead>
+                            <td></td>
+                            <td></td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Employee Id : </td>
+                                <td>{{userDetails.id}}</td>
+                            </tr>
+                            <tr>
+                                <td>Employee Name : </td>
+                                <td>{{userDetails.userName}}</td>
+                            </tr>
+                            <tr>
+                                <td> Email : </td>
+                                <td>{{userDetails.email}}</td>
+                            </tr>
+                            <tr>
+                                <td> Location : </td>
+                                <td>{{location.locationName}}</td>
+                            </tr>
+                            <tr>
+                                <td> Designation: </td>
+                                <td>{{designation.designationName}}</td>
+                            </tr>
+                            <tr>
+                                <td> Gender : </td>
+                                <td>{{gender.genderName}}</td>
+                            </tr>
+                            <!-- <tr >
+                                <td>Skills :</td>
+                                <td *ngFor="let skill of skills">{{skill.name}}</td>
+                            </tr> -->
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+<nav class='navbar navbar-expand navbar-light big-light'>
+    <!-- <a class= 'navbar-brand'>{{pageTitle}}</a> -->
+    <ul class='nav nav-pills'>
+        <!-- <li><a class='nav-link' routerLink="/user">Home</a></li> -->
+
+        <li><a class='nav-link' [routerLink]="['/user', userDetails.id]">Personal Details</a></li>
+        <li><a class='nav-link' [routerLink]="['/skills', userDetails.id]">Skills</a></li>
+
+    </ul>
+</nav>

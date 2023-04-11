@@ -1,0 +1,220 @@
+<div class="card">
+    <div class="card-header">
+        {{userTitle}}
+    </div>
+    <div class="card-body">
+
+        <!-- Body Header -->
+        <div class="row">
+            <form [formGroup]="getForm">
+                <div class="row">
+                    <div class="col">
+                        Manage Employee
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                        <h6 class="text-secondary fst-italic">pageSize</h6>
+                        <input type="text" class="form-control" placeholder="pageSize" id="pageSize"
+                            formControlName="pageSize" />
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="text-secondary fst-italic">pageNumber</h6>
+                        <input type="text" class="form-control" placeholder="pageNumber" id="listFilter"
+                            formControlName="pageNumber" />
+                    </div>
+                    <div class="col-md-2 mt-4">
+                        <button type="button" class="btn btn-primary" (click)="getAllUsers()">Show Result</button>
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Add
+                            User</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Table of the Users -->
+        <div class="table-responsive my-3">
+            <table class="table" *ngIf="users.length">
+                <thead>
+                    <tr>
+                        <td>Image</td>
+                        <td>Employee Id</td>
+                        <td>UserName</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Action</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>
+                            <img img src="assets/default-avatar.jpg" [title]='user.firstName + user.lastName'
+                                [style.width.px]="imageWidth" [style.margin.px]="imageMargine">
+                        </td>
+                        <td>{{user.id}}</td>
+                        <td>{{user.userName}}</td>
+                        <td>{{user.firstName + ' ' + user.lastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <a [routerLink]="['/users', user.id ]" [routerLink]="['/user' ,user.id]">
+
+                                <button type="button" class="btn btn-primary">View Details</button>
+                            </a>
+                        </td>
+                        <td><button type="button" class="btn btn-danger" (click)="onDelete(user.id)">Delete
+                                User</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- Modal For the Add User  -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">User Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form [formGroup]="employeeForm">
+                            <h6 class="text-secondary fst-italic">Personal Information</h6>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="first name"
+                                        formControlName='firstName'>
+                                    <div class="form-text text-danger" *ngIf="FirstName.errors?.['required'] &&
+                        FirstName.touched">
+                                       first name is require!
+                                    </div>
+                                    <div class="form-text text-danger" *ngIf="FirstName.errors?.['pattern'] &&
+                                    FirstName.touched">
+                                        name should start with Alphabet!
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="last name"
+                                        formControlName='lastName'>
+                                    <div class="form-text text-danger" *ngIf="LastName.errors?.['required'] &&
+                                    LastName.touched">
+                                       last name is require!
+                                    </div>
+                                    <div class="form-text text-danger" *ngIf="LastName.errors?.['pattern'] &&
+                                    LastName.touched">
+                                        name should start with Alphabet!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <h6 class="text-secondary">Designation :</h6>
+                                    <select class="form-select" formControlName='designationId'>
+                                        <option value="default" selected>Select your Designation</option>
+                                        <option *ngFor="let option of designations" value="{{option.id}}">
+                                            {{option.designationName | titlecase}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <h6 class="text-secondary">Gender</h6>
+                                    <select class="form-select" formControlName='genderId'>
+                                        <option value="default" selected>Select your Gender</option>
+                                        <option *ngFor="let option of genders; let i = index;" value="{{option.id}}">
+                                            {{option.genderName | titlecase}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <h6 class="text-secondary">UserName</h6>
+                                <input type="text" class="form-control" placeholder="user name" formControlName="userName">
+                                <div class="form-text text-danger" *ngIf="UserName.errors?.['required'] &&
+                        UserName.touched">
+                                    userName required!
+                                </div>
+
+                            </div>
+                            <div class="row mt-3">
+                                <h6 class="text-secondary">Email</h6>
+                                <input type="text" class="form-control" placeholder="email" formControlName='email'>
+                                <div class="form-text text-danger" *ngIf="Email.errors?.['email'] &&
+                        Email.touched">
+                                    Invalid email!
+                                </div>
+                                <div class="form-text text-danger" *ngIf="Email.errors?.['required'] &&
+                        Email.touched">
+                                    email required!
+                                </div>
+
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <h6 class="text-secondary">Location</h6>
+                                    <select class="form-select" formControlName='locationId'>
+                                        <option value="default" selected>Select your Location</option>
+                                        <option *ngFor="let option of locations" value="{{option.id}}">
+                                            {{option.locationName | titlecase}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <h6 class="text-secondary">Password</h6>
+                                    <input type="password" class="form-control" placeholder=" Password"
+                                        formControlName='pwd'>
+                                    <div class="form-text text-danger" *ngIf="Password.errors?.['required'] &&
+                        Password.touched">
+                                        Password required!
+                                    </div>
+                                    <div class="form-text text-danger" *ngIf="Password.errors?.['minlength']  || Password.errors?.['maxlength'] &&
+                    Password.touched">
+                                        Password should be at least 6 and at the max 15 character long!
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <h6 class="text-secondary">Confirm Password</h6>
+                                    <input type="password" class="form-control" placeholder=" Confirm Password"
+                                        formControlName='rpwd'>
+                                    <div class="form-text text-danger" [ngStyle]="{'display':repeatPass}">
+                                        Confirm Password does not matched !
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <!-- <div class="col">
+                                    <h6 class="text-secondary">Skills</h6>
+                                    <select class="form-select" formControlName='skill'>
+                                        <option value="default" selected>Select your Skill</option>
+                                        <option *ngFor="let skill of skills; let i = index;" value="{{skill.id}}">
+                                            {{skill.name | titlecase}}
+                                        </option>
+                                    </select>
+                                </div> -->
+                               
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" [disabled]="employeeForm.invalid" class="btn btn-success"
+                            data-bs-dismiss="modal" (click)="addUser()">Add User </button>
+                        <!-- (click)="addUser()" -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
