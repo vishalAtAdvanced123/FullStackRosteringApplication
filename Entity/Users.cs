@@ -28,7 +28,7 @@ namespace RosteringPractice.Entity
         [ForeignKey("GenderId")]
         public Gender? Gender{ get; set; } 
         public int GenderId { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public string Password { get; set; }
 
         public Users(string firstName,string lastName)
