@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "sIFo0iM1vkTBbQ4ErUlyk2BivqYUWVdBPx9UqwE8V2MNaimgxwHoI5Wh4KccMOLIJs9VfSjPd6nfFGi0d8vzfw==",
+  "dgSpecHash": "4D9HZN++0quIDnOVRbrZNuCVOlgbF75DDbh87wCsEPu01KP2JA6bb+/LcRA0yAK+SB9XDLy7rVbwSpj3xJyxoQ==",
   "success": true,
   "projectFilePath": "C:\\RosteringPractice\\Back-End\\RosteringPractice\\RosteringPractice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
+    "C:\\Users\\vishal.rathod\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\vishal.rathod\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\vishal.rathod\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

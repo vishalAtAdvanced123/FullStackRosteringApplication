@@ -206,3 +206,6 @@ C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\package.json
 C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\tsconfig.app.json
 C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\tsconfig.json
 C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\tsconfig.spec.json
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\FluentValidation.dll
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
