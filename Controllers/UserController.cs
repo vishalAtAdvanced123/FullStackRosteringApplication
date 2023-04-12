@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using RosteringPractice.Entity;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -52,7 +52,7 @@ namespace CityInfo.API.Controllers
                 return NotFound("Please Enter the Valid Value !");
             }
 
-            return Ok(_mapper.Map<UserWithoutSkills>(user));
+            return Ok(_mapper.Map<UserDto>(user));
 
         }
         [HttpPost]
@@ -87,35 +87,35 @@ namespace CityInfo.API.Controllers
             return NoContent();
         }
 
-        [HttpPatch]
-        public async Task<ActionResult> PartialUpdateUser(int UserId,
-            JsonPatchDocument<UserUpdateDto> patchDocument)
-        {
-            var user = await _userInfoRepository.GetUserAsync(UserId);
-            if (user == null)
-            {
-                return NotFound("Please Enter the Valid Value!");
-            }
-            var userToPatch = _mapper.Map<UserUpdateDto>(user);
+    [HttpPatch]
+    public async Task<ActionResult> PartialUpdateUser(int UserId,
+        JsonPatchDocument<UserUpdateDto> patchDocument)
+    {
+      var user = await _userInfoRepository.GetUserAsync(UserId);
+      if (user == null)
+      {
+        return NotFound("Please Enter the Valid Value!");
+      }
+      var userToPatch = _mapper.Map<UserUpdateDto>(user);
 
-            patchDocument.ApplyTo(userToPatch, ModelState);
+      patchDocument.ApplyTo(userToPatch, ModelState);
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            if (!TryValidateModel(userToPatch))
-            {
-                return BadRequest(ModelState);
-            }
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
+      if (!TryValidateModel(userToPatch))
+      {
+        return BadRequest(ModelState);
+      }
 
-            _mapper.Map(userToPatch, user);
-            await _userInfoRepository.SaveChangesAsync();
+      _mapper.Map(userToPatch, user);
+      await _userInfoRepository.SaveChangesAsync();
 
-            return NoContent();
-        }
+      return NoContent();
+    }
 
-        [HttpDelete("{UserId}")]
+    [HttpDelete("{UserId}")]
         public async Task<ActionResult> DeleteUser(int UserId)
         {
             var user = await _userInfoRepository.GetUserAsync(UserId);
