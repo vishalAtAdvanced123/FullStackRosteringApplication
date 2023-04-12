@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using RosteringPractice.Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,19 +6,20 @@ using System.Net.Mail;
 
 namespace RosteringPractice.Entity
 {
-    //[Index(nameof(UserName), IsUnique = true)]
+    
     public class Users
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        
+    //[Required(ErrorMessage ="UserName is required")]
         public string UserName { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
         [ForeignKey("LocationId")]
+
         public Location? Location { get; set; }
         public int LocationId { get; set; }
         [ForeignKey("DesignationId")]
@@ -28,6 +29,7 @@ namespace RosteringPractice.Entity
         [ForeignKey("GenderId")]
         public Gender? Gender{ get; set; } 
         public int GenderId { get; set; }
+       
         public string? Email { get; set; }
         public string Password { get; set; }
 

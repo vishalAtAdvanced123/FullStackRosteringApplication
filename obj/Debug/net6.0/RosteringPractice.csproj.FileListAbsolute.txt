@@ -200,3 +200,9 @@ C:\RosteringPractice\Back-End\RosteringPractice\obj\Debug\net6.0\refint\Rosterin
 C:\RosteringPractice\Back-End\RosteringPractice\obj\Debug\net6.0\RosteringPractice.pdb
 C:\RosteringPractice\Back-End\RosteringPractice\obj\Debug\net6.0\RosteringPractice.genruntimeconfig.cache
 C:\RosteringPractice\Back-End\RosteringPractice\obj\Debug\net6.0\ref\RosteringPractice.dll
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\angular.json
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\package-lock.json
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\package.json
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\tsconfig.app.json
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\tsconfig.json
+C:\RosteringPractice\Back-End\RosteringPractice\bin\Debug\net6.0\tsconfig.spec.json
