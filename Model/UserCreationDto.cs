@@ -27,6 +27,7 @@ namespace RosteringPractice.Model
 
         [Required(ErrorMessage ="Password is Required")]
         public string Password { get; set; } = string.Empty;
+
         
         //public int skillId { get; set; }
     }
