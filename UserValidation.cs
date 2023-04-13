@@ -14,12 +14,12 @@ public class UserValidation : AbstractValidator<UserCreationDto>
     _context = context ?? throw new ArgumentNullException(nameof(context));
     RuleFor(w => w.LocationId)
             .Must(locationId => _context.LocationList.Any(location => location.Id == locationId))
-            .WithMessage("Location Id does not exist in the Location List");
+            .WithMessage("Location Id does not exist in the Location List table");
     RuleFor(w => w.DesignationId)
             .Must(designationId => _context.DesignationList.Any(designation => designation.Id == designationId))
-            .WithMessage("Designation Id does not exist in the Designation List");
+            .WithMessage("Designation Id does not exist in the Designation List table");
     RuleFor(w => w.GenderId)
             .Must(genderId => _context.GenderList.Any(gender => gender.Id == genderId))
-            .WithMessage("Gender Id does not exist in the Gender List");
+            .WithMessage("Gender Id does not exist in the Gender List table");
   }
 }
