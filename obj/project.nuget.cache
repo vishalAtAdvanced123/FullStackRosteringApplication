@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4D9HZN++0quIDnOVRbrZNuCVOlgbF75DDbh87wCsEPu01KP2JA6bb+/LcRA0yAK+SB9XDLy7rVbwSpj3xJyxoQ==",
+  "dgSpecHash": "ZwcQnDG7p3Qa6qTMdQ8fIBHnXsmZc/p2iT9xGcLeOh8Obl4JpoC2z4fKOkrfrefCSp5aKKNfAwextF4rc1X0eg==",
   "success": true,
   "projectFilePath": "C:\\RosteringPractice\\Back-End\\RosteringPractice\\RosteringPractice.csproj",
   "expectedPackageFiles": [
@@ -52,8 +52,11 @@
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\vishal.rathod\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\vishal.rathod\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
+    "C:\\Users\\vishal.rathod\\.nuget\\packages\\nunit3testadapter\\4.4.2\\nunit3testadapter.4.4.2.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.2\\sqlitepclraw.bundle_e_sqlite3.2.1.2.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\sqlitepclraw.core\\2.1.2\\sqlitepclraw.core.2.1.2.nupkg.sha512",
     "C:\\Users\\vishal.rathod\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.2\\sqlitepclraw.lib.e_sqlite3.2.1.2.nupkg.sha512",

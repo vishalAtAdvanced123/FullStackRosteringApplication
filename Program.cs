@@ -15,7 +15,8 @@ c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("UserInfoDbConnection");
-builder.Services.AddDbContext<UserInfoContext>(options => options.UseSqlServer(connectionString));builder.Services.AddScoped<IUserInfoRepository, UserInfoRepository>();
+builder.Services.AddDbContext<UserInfoContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IUserInfoRepository, UserInfoRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

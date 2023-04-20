@@ -26,10 +26,9 @@ namespace CityInfo.API.Controllers
         public UserController(IUserInfoRepository userInfoRepository,
             IMapper mapper)
         {
-            _userInfoRepository = userInfoRepository
-                ?? throw new ArgumentNullException(nameof(userInfoRepository));
+            _userInfoRepository = userInfoRepository;
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        }
+    }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers(int pageSize, int pageNumber)
         {
@@ -43,7 +42,7 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser(
+        public async Task<ActionResult> GetUser(
             int id)
         {
             var user = await _userInfoRepository.GetUserAsync(id);

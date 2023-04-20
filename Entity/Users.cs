@@ -20,21 +20,21 @@ namespace RosteringPractice.Entity
 
         [ForeignKey("LocationId")]
 
-        public Location? Location { get; set; }
+        public Location Location { get; set; }
         public int LocationId { get; set; }
         [ForeignKey("DesignationId")]
-        public Designation? Designation { get; set; }
+        public Designation Designation { get; set; }
         public int DesignationId { get; set; }
 
         [ForeignKey("GenderId")]
-        public Gender? Gender{ get; set; } 
+        public Gender Gender{ get; set; } 
         public int GenderId { get; set; }
        
         public string? Email { get; set; }
         public string Password { get; set; }
 
         public Users(string firstName,string lastName)
-        {
+        { 
             FirstName= firstName;
             LastName= lastName;
         }
@@ -44,11 +44,13 @@ namespace RosteringPractice.Entity
         public ICollection<UserSkills> SkillforUser { get; set; } =
             new List<UserSkills>();
 
-
-        //[ForeignKey("SkillId")]
-        //public Skills? Skills { get; set; }
-        //public int SkillId { get; set; }
+   
 
 
-    }
+    //[ForeignKey("SkillId")]
+    //public Skills? Skills { get; set; }
+    //public int SkillId { get; set; }
+
+
+  }
 }

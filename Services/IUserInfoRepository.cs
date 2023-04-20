@@ -1,11 +1,10 @@
-﻿using RosteringPractice.Entity;
+using RosteringPractice.Entity;
 
 namespace RosteringPractice.Services
 {
     public interface IUserInfoRepository
     {
-        //Users
-        Task<IEnumerable<Users>> GetUsersAsync();
+        Task<IEnumerable<Users?>> GetUsersAsync();
         Task<IEnumerable<Users?>> GetUsersAsync(
             int pageNumber , int pageSize);
         Task<Users?> GetUserAsync(int UserId);
@@ -15,7 +14,7 @@ namespace RosteringPractice.Services
 
         //Locations
         Task<IEnumerable<Location>> GetLocationsAsync();
-        Task<Location?> GetLocationAsync(int locationId);
+        Task<Location> GetLocationAsync(int locationId);
 
         //Gender
         Task<IEnumerable<Gender>> GetGendersAsync();
@@ -24,7 +23,7 @@ namespace RosteringPractice.Services
 
         //Designation
         Task<IEnumerable<Designation>> GetDesignationsAsync();
-        Task<Designation?> GetDesignationAsync(int designationId);
+        Task<Designation> GetDesignationAsync(int designationId);
         
         
         //UserSkills
@@ -41,6 +40,6 @@ namespace RosteringPractice.Services
         Task<bool> SaveChangesAsync();
 
         Task<bool> skillExist( int userId ,int skillId);
-
-    }
+    
+  }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using RosteringPractice.DbContexts;
 using RosteringPractice.Entity;
 
@@ -14,7 +14,7 @@ namespace RosteringPractice.Services
         }
 
         //Users
-        public async Task<IEnumerable<Users>> GetUsersAsync(int pageSize, int pageNumber)
+        public async Task<IEnumerable<Users?>> GetUsersAsync(int pageSize, int pageNumber)
         {
             if (pageNumber == 0 && pageSize == 0)
             {
@@ -29,7 +29,7 @@ namespace RosteringPractice.Services
                 .ToListAsync();
 
         }
-        public async Task<IEnumerable<Users>> GetUsersAsync()
+        public async Task<IEnumerable<Users?>> GetUsersAsync()
         {
             return await _context.UsersInfo.OrderBy(c => c.Id).ToListAsync();
         }
